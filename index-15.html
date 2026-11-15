@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه لباس من</title>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>فروشگاه لباس من</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: beige;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: red;
+}
+
+p {
+    font-size: 20px;
+}
+
+nav {
+    background-color: black;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 900px;
+    margin: 20p
+}
+
+.product {
+    background-color: white;
+    width: auto;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.product:hover {
+    transform: translateY(-8px);
+    transition: 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#cart {
+    list-style: none;
+    padding: 0;
+}
+
+#cart li {
+    margin: 10px;
+}
+
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#bigImage {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+#imageModal span {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    font-size: 40px;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 10px;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 14px;
+    }
+}
+
+.product img {
+    width: 100%;
+    max-width: 200px;
+    height: 180px;
+    object-fit: contain;
+    display: block;
+    margin: 15px auto;
+}
+  .discount-badge {
+    background-color: red;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .details-box {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  }
+  .details-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    z-index: 2000;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.4);
+  }
+</style>
+</head>
+
+</head>
+
+<body>
+
+<h1>به فروشگاه لباس من خوش آمدید</h1>
+
+<nav>
+    <a href="#">صفحه اصلی</a>
+    <a href="#">محصولات</a>
+    <a href="#">تماس با ما</a>
+</nav>
+  
+<!-- شروع محصولات -->
+
+<input
+    type="text"
+    id="searchInput"
+    placeholder="جست‌وجوی محصول..."
+    onkeyup="searchProducts()"
+>
+
+<h2>محصولات ما</h2>
+
+<div class="products-container">
+    <div class="product">
+      <span class="discount-badge">۱۰٪ تخفیف</span>
+        <h2>کفش اسپرت مردانه</h2>
+
+        <img src="img/41524.jpg"
+             width="200"
+             onclick="showImage(this)">
+
+        <p>
+            <del>۱,۵۰۰,۰۰۰ تومان</del>
+            <strong style="color:red;">
+                ۱,۲۰۰,۰۰۰ تومان
+            </strong>
+        </p>
+
+        <span style="color:green;">۲۰٪ تخفیف</span>
+
+        <button onclick="addToCart('کفش اسپرت مردانه', 1200000)">
+    خرید محصول
+</button>
+
+<button onclick="showDetails('کفش اسپرت مردانه')">
+    مشاهده جزئیات
+</button>
+        
+    </div>
+
+    <div class="product">
+        <h2>کفش ورزشی زنانه</h2>
+
+        <img src="img/shoe.jpg"
+             width="200"
+             onclick="showImage(this)">
+
+        <p>قیمت قبلی: <del>۱,۲۰۰,۰۰۰ تومان</del></p>
+<p>قیمت با تخفیف: ۱,۰۸۰,۰۰۰ تومان</p>
+<!-- کفش ورزشی زنانه -->
+<button onclick="addToCart('کفش ورزشی زنانه', 1080000)">
+    خرید محصول
+</button>
+
+<button onclick="showDetails('کفش ورزشی زنانه')">
+    مشاهده جزئیات
+</button>
+            
+        
+    </div>
+
+    <div class="product">
+        <h2>تی شرت مردانه</h2>
+
+        <img src="img/1794222878012.jpg"
+             width="200"
+             onclick="showImage(this)">
+
+        <p>قیمت قبلی: <del>۱,۰۰۰,۰۰۰ تومان</del></p>
+<p>قیمت با تخفیف: ۹۰۰,۰۰۰ تومان</p>
+
+        
+<button onclick="addToCart('تی شرت مردانه', 900000)">
+    خرید محصول
+</button>
+
+<button onclick="showDetails('تی شرت مردانه')">
+    مشاهده جزئیات
+</button>
+        </button>
+    </div>
+    <div class="product">
+        <h2>شلوار جین مردانه</h2>
+
+        <img src="img/1794222880783.jpg"
+             width="200"
+             onclick="showImage(this)">
+
+        <p>قیمت قبلی: <del>۹۰۰,۰۰۰ تومان</del></p>
+<p>قیمت با تخفیف: ۸۱۰,۰۰۰ تومان</p>
+
+        <button onclick="addToCart('شلوار جین مردانه', 900000)">
+            خرید محصول
+        </button>
+    </div>
+
+    <div class="product">
+        <h2>هودی مردانه</h2>
+
+        <img src="img/1794222883212.jpg"
+             width="200"
+             onclick="showImage(this)">
+
+        <p>قیمت قبلی: <del>۹۰۰,۰۰۰ تومان</del></p>
+<p>قیمت با تخفیف: ۸۱۰,۰۰۰ تومان</p>
+
+        <button onclick="addToCart('هودی مردانه', 1000000)">
+            خرید محصول
+        </button>
+    </div>
+  <div id="productDetails" class="details-box">
+
+    <h2 id="detailsName"></h2>
+
+    <p id="detailsPrice"></p>
+
+    <p id="detailsDescription"></p>
+
+    <button onclick="closeDetails()">بستن</button>
+
+  </div>
+  
+
+</div>
+  
+
+<!-- پایان محصولات -->
+
+<!-- سبد خرید -->
+
+<h2>🛒 سبد خرید من (<span id="count">0</span>)</h2>
+
+<ul id="cart"></ul>
+
+<button onclick="clearCart()">
+    خالی کردن سبد خرید
+</button>
+  <hr>
+<h2>ورود مدیر فروشگاه</h2>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="رمز عبور مدیر را وارد کنید"
+>
+
+<button onclick="loginAdmin()">
+ورود به پنل
+</button>
+<h2>پنل مدیریت سفارش‌ها</h2>
+  <div id="adminPanel" style="display:none;">
+
+<div id="ordersList"></div>
+
+<button onclick="showOrders()">
+    نمایش سفارش‌ها
+</button>
+  </div>
+<h3>اطلاعات مشتری</h3>
+
+<input type="text" id="customerName"
+placeholder="نام خود را وارد کنید">
+  <input type="tel" id="customerPhone"
+placeholder="شماره تماس خود را وارد کنید">
+<button onclick="registerOrder()">
+    ثبت سفارش
+</button>
+
+<p>
+مجموع قیمت:
+<span id="total">0</span> تومان
+</p>
+
+<!-- پنجره نمایش عکس -->
+
+<div id="imageModal" onclick="closeImage()">
+
+    <span>×</span>
+
+    <img id="bigImage">
+
+</div>
+
+<!-- جاوااسکریپت -->
+<script>
+
+let total = 0;
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+
+function registerOrder() {
+
+    let name = document.getElementById("customerName").value;
+    let phone = document.getElementById("customerPhone").value;
+
+    let cart = document.getElementById("cart");
+
+    if (cart.children.length === 0) {
+        alert("سبد خرید شما خالی است!");
+        return;
+    }
+
+    if (name.trim() === "" || phone.trim() === "") {
+        alert("لطفاً نام و شماره تماس را وارد کنید!");
+        return;
+    }
+
+    alert("سفارش شما با موفقیت ثبت شد!");
+  orders.push({
+    name: name,
+    phone: phone,
+    products: Array.from(cart.children).map(item =>
+        item.querySelector("span").textContent
+    ),
+    total: total
+});
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+    clearCart();
+}
+
+function loginAdmin() {
+
+    let password = document.getElementById("adminPassword").value;
+
+    if (password === "1234") { 
+      alert("ورود مدیر موفق بود!");
+      document.getElementById("adminPanel").style.display = "block";
+    } else {
+        alert("رمز عبور اشتباه است!");
+    }
+
+}
+function showOrders() {
+    let orders = JSON.parse(
+        localStorage.getItem("orders")
+    ) || [];
+
+    let box = document.getElementById("ordersList");
+
+    box.innerHTML = "";
+
+    if (orders.length === 0) {
+        box.innerHTML = "هنوز سفارشی ثبت نشده است.";
+        return;
+    }
+
+    orders.forEach(function(order, index) {
+
+        let item = document.createElement("div");
+
+        item.innerHTML = `
+            <h3>${order.name}</h3>
+            <p>شماره تماس: ${order.phone}</p>
+            <p>مجموع خرید: ${order.total.toLocaleString("fa-IR")} تومان</p>
+        `;
+
+        let btn = document.createElement("button");
+
+        btn.textContent = "حذف سفارش";
+
+        btn.onclick = function() {
+            orders.splice(index, 1);
+
+            localStorage.setItem(
+                "orders",
+                JSON.stringify(orders)
+            );
+
+            showOrders();
+        };
+
+        item.appendChild(btn);
+        box.appendChild(item);
+
+    });
+}
+
+function addToCart(name, price) {
+    let cart = document.getElementById("cart");
+
+    let item = document.createElement("li");
+
+    let nameText = document.createElement("span");
+
+    nameText.textContent =
+        name + " - " +
+        price.toLocaleString("fa-IR") +
+        " تومان ";
+
+    let removeBtn = document.createElement("button");
+
+    removeBtn.textContent = "حذف";
+
+    removeBtn.onclick = function() {
+        item.remove();
+        total -= price;
+
+        document.getElementById("count").textContent =
+            cart.children.length;
+
+        document.getElementById("total").textContent =
+            total.toLocaleString("fa-IR");
+    };
+
+    item.appendChild(nameText);
+    item.appendChild(removeBtn);
+    cart.appendChild(item);
+
+    total += price;
+
+    document.getElementById("count").textContent =
+        cart.children.length;
+
+    document.getElementById("total").textContent =
+        total.toLocaleString("fa-IR");
+
+    alert("محصول به سبد خرید اضافه شد!");
+}
+
+
+function clearCart() {
+
+    document.getElementById("cart").innerHTML = "";
+
+    total = 0;
+
+    document.getElementById("count").textContent = 0;
+
+    document.getElementById("total").textContent = 0;
+
+}
+  function searchProducts() {
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+
+        let name = product.querySelector("h2").textContent.toLowerCase();
+
+        if (name.includes(input)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+
+    });
+          }
+  function showDetails(name) {
+
+    let box = document.getElementById("productDetails")
+      ;
+    console.log(box);
+
+    box.style.display = "block";
+
+    document.getElementById("detailsName").textContent = name;
+
+    document.getElementById("detailsPrice").textContent =
+        "قیمت محصول را در کارت محصول مشاهده کنید.";
+
+    document.getElementById("detailsDescription").textContent =
+        "اطلاعات بیشتر درباره " + name;
+}
+
+function closeDetails() {
+    document.getElementById("productDetails").style.display = "none";
+}
+ 
+</script>
+
+</body>
+</html>
+x auto;
